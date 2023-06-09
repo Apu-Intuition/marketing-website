@@ -45,6 +45,7 @@ const drawTitle = (parent: Element) => {
 };
 const drawSubTitle = (parent: Element) => {
   return createText({
+    id: "subTitle",
     text: "Introduction",
     classNames: subTitleStyle,
     parent,

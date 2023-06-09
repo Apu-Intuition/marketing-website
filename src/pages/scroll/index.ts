@@ -6,13 +6,40 @@ import { drawPlayer } from "./utils/createPlayer";
 window.Webflow ||= [];
 window.Webflow.push(() => {
   const { init } = log();
-  // init();
 
   const { canvas, box, pill, title, subTitle, trackPlayer, buttons } =
     drawPlayer();
 
   const section = document.querySelector(".section-1");
   section?.classList.add(sectionStyle);
+
+  const forwardButton = document.getElementById("forwardButton");
+  forwardButton?.addEventListener("click", () => {
+    const subTitle = document.getElementById("subTitle");
+    if (subTitle?.innerText === "Introduction") {
+      subTitle.innerText = "Shield 1";
+    } else if (subTitle?.innerText === "Shield 1") {
+      subTitle.innerText = "Shield 2";
+    } else if (subTitle?.innerText === "Shield 2") {
+      subTitle.innerText = "Shield 3";
+    } else if (subTitle?.innerText === "Shield 3") {
+      subTitle.innerText = "Introduction";
+    }
+  });
+
+  const backwardButton = document.getElementById("backwardButton");
+  backwardButton?.addEventListener("click", () => {
+    const subTitle = document.getElementById("subTitle");
+    if (subTitle?.innerText === "Introduction") {
+      subTitle.innerText = "Shield 3";
+    } else if (subTitle?.innerText === "Shield 1") {
+      subTitle.innerText = "Introduction";
+    } else if (subTitle?.innerText === "Shield 2") {
+      subTitle.innerText = "Shield 1";
+    } else if (subTitle?.innerText === "Shield 3") {
+      subTitle.innerText = "Shield 2";
+    }
+  });
 
   if (section) {
     scroll(
