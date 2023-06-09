@@ -1,4 +1,5 @@
-import * as esbuild from "esbuild";
+import { vanillaExtractPlugin } from "@vanilla-extract/esbuild-plugin";
+import esbuild from "esbuild";
 import { readdirSync } from "fs";
 import { join, sep } from "path";
 
@@ -7,7 +8,11 @@ const BUILD_DIRECTORY = "dist";
 const PRODUCTION = process.env.NODE_ENV === "production";
 
 // Config entrypoint files
-const ENTRY_POINTS = ["src/index.ts", "src/pages/home.ts"];
+const ENTRY_POINTS = [
+  "src/index.ts",
+  "src/pages/home.ts",
+  "src/pages/scroll/index.ts",
+];
 
 // Config dev serving
 const LIVE_RELOAD = !PRODUCTION;
@@ -26,6 +31,7 @@ const context = await esbuild.context({
   define: {
     SERVE_ORIGIN: JSON.stringify(SERVE_ORIGIN),
   },
+  plugins: [vanillaExtractPlugin()],
 });
 
 // Build files in prod
